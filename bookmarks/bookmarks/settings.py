@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'social_django',
     'django_extensions',
+    'images.apps.ImagesConfig',
+    'easy_thumbnails',
 
 ]
 
@@ -140,3 +142,7 @@ SOCIAL_AUTH_FACEBOOK_SECRET = ''
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '' 
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '' 
 
+if DEBUG:
+ import mimetypes
+ mimetypes.add_type('application/javascript', '.js', True)
+ mimetypes.add_type('text/css', '.css', True)
