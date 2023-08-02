@@ -42,10 +42,13 @@ INSTALLED_APPS = [
     'django_extensions',
     'images.apps.ImagesConfig',
     'easy_thumbnails',
+    'actions.apps.ActionsConfig',
+    'debug_toolbar',
 
 ]
 
 MIDDLEWARE = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -56,6 +59,9 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'bookmarks.urls'
+INTERNAL_IPS = [
+ '127.0.0.1',
+] 
 
 TEMPLATES = [
     {
@@ -146,3 +152,9 @@ if DEBUG:
  import mimetypes
  mimetypes.add_type('application/javascript', '.js', True)
  mimetypes.add_type('text/css', '.css', True)
+
+from django.urls import reverse_lazy
+ABSOLUTE_URL_OVERRIDES = {
+ 'auth.user': lambda u: reverse_lazy('user_detail',
+ args=[u.username])
+}

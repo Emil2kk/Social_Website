@@ -40,6 +40,9 @@
                 {% endfor %}
             </ul>
         {% endif %}
+        <li {% if section == "people" %}class="selected"{% endif %}>
+            <a href="{% url "user_list" %}">People</a>
+        </li>
         <div id="content">
             {% block content %}
             {% endblock %}
